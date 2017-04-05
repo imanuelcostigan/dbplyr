@@ -29,6 +29,12 @@ sql_optimise.select_query <- function(x, con = NULL, ...) {
   outer <- select_query_clauses(x)
   inner <- select_query_clauses(from)
 
+<<<<<<< HEAD
+=======
+  if (length(outer) == 0 || length(inner) == 0)
+    return(x)
+
+>>>>>>> hadley/master
   if (min(outer) > max(inner)) {
     from[as.character(outer)] <- x[as.character(outer)]
     from

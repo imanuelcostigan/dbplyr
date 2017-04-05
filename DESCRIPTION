@@ -59,6 +59,10 @@ Collate:
     'sql-optimise.R'
     'sql-query.R'
     'sql-render.R'
+<<<<<<< HEAD
+=======
+    'sql.R'
+>>>>>>> hadley/master
     'src-sql.r'
     'src_dbi.R'
     'tbl-lazy.R'

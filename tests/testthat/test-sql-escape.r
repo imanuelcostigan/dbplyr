@@ -30,6 +30,15 @@ test_that("-Inf and Inf are expanded and quoted", {
   expect_equal(escape(-Inf), sql("'-Infinity'"))
 })
 
+<<<<<<< HEAD
+=======
+test_that("logical is SQL-99 compatible (by default)", {
+  expect_equal(escape(TRUE), sql("TRUE"))
+  expect_equal(escape(FALSE), sql("FALSE"))
+  expect_equal(escape(NA), sql("NULL"))
+})
+
+>>>>>>> hadley/master
 # Times -------------------------------------------------------------------
 
 test_that("times are converted to ISO 8601", {

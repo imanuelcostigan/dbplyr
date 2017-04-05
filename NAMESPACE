@@ -158,6 +158,12 @@ S3method(sql_escape_ident,"NULL")
 S3method(sql_escape_ident,DBIConnection)
 S3method(sql_escape_ident,MySQLConnection)
 S3method(sql_escape_ident,SQLiteConnection)
+<<<<<<< HEAD
+=======
+S3method(sql_escape_logical,"NULL")
+S3method(sql_escape_logical,DBIConnection)
+S3method(sql_escape_logical,SQLiteConnection)
+>>>>>>> hadley/master
 S3method(sql_escape_string,"NULL")
 S3method(sql_escape_string,DBIConnection)
 S3method(sql_join,DBIConnection)
@@ -238,6 +244,10 @@ export(set_op_query)
 export(setdiff)
 export(sql)
 export(sql_build)
+<<<<<<< HEAD
+=======
+export(sql_escape_logical)
+>>>>>>> hadley/master
 export(sql_infix)
 export(sql_not_supported)
 export(sql_optimise)

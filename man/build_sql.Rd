@@ -4,7 +4,11 @@
 \alias{build_sql}
 \title{Build a SQL string.}
 \usage{
+<<<<<<< HEAD
 build_sql(..., .env = parent.frame(), con = NULL)
+=======
+build_sql(..., .env = parent.frame(), con = sql_current_con())
+>>>>>>> hadley/master
 }
 \arguments{
 \item{...}{input to convert to SQL. Use \code{\link[=sql]{sql()}} to preserve

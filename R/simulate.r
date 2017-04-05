@@ -19,6 +19,15 @@ simulate_dbi <- function() {
   )
 }
 
+<<<<<<< HEAD
+=======
+simulate_sqlite <- function() {
+  structure(
+    list(),
+    class = c("SQLiteConnection", "DBIConnection")
+  )
+}
+>>>>>>> hadley/master
 
 simulate_postgres <- function() {
   structure(
@@ -26,4 +35,7 @@ simulate_postgres <- function() {
     class = c("PostgreSQLConnection", "DBIConnection")
   )
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> hadley/master

@@ -28,7 +28,11 @@ win_over <- function(expr, partition = NULL, order = NULL, frame = NULL) {
     partition <- build_sql(
       "PARTITION BY ",
       sql_vector(
+<<<<<<< HEAD
         escape(partition, con = win_current_con()),
+=======
+        escape(partition, con = sql_current_con()),
+>>>>>>> hadley/master
         collapse = ", ",
         parens = FALSE
       )
@@ -43,7 +47,11 @@ win_over <- function(expr, partition = NULL, order = NULL, frame = NULL) {
     order <- build_sql(
       "ORDER BY ",
       sql_vector(
+<<<<<<< HEAD
         escape(order, con = win_current_con()),
+=======
+        escape(order, con = sql_current_con()),
+>>>>>>> hadley/master
         collapse = ", ",
         parens = FALSE
       )
@@ -63,7 +71,11 @@ win_over <- function(expr, partition = NULL, order = NULL, frame = NULL) {
   }
 
   over <- sql_vector(compact(list(partition, order, frame)), parens = TRUE)
+<<<<<<< HEAD
   sql <- build_sql(expr, " OVER ", over, con = win_current_con())
+=======
+  sql <- build_sql(expr, " OVER ", over)
+>>>>>>> hadley/master
 
   sql
 }
@@ -144,6 +156,7 @@ win_absent <- function(f) {
 # Use a global variable to communicate state of partitioning between
 # tbl and sql translator. This isn't the most amazing design, but it keeps
 # things loosely coupled and is easy to understand.
+<<<<<<< HEAD
 partition <- new.env(parent = emptyenv())
 partition$group_by <- NULL
 partition$order_by <- NULL
@@ -152,27 +165,48 @@ partition$con <- NULL
 set_win_current_con <- function(con) {
   old <- partition$con
   partition$con <- con
+=======
+sql_context <- new.env(parent = emptyenv())
+sql_context$group_by <- NULL
+sql_context$order_by <- NULL
+sql_context$con <- NULL
+
+set_current_con <- function(con) {
+  old <- sql_context$con
+  sql_context$con <- con
+>>>>>>> hadley/master
   invisible(old)
 }
 
 set_win_current_group <- function(vars) {
   stopifnot(is.null(vars) || is.character(vars))
 
+<<<<<<< HEAD
   old <- partition$group_by
   partition$group_by <- vars
+=======
+  old <- sql_context$group_by
+  sql_context$group_by <- vars
+>>>>>>> hadley/master
   invisible(old)
 }
 
 set_win_current_order <- function(vars) {
   stopifnot(is.null(vars) || is.character(vars))
 
+<<<<<<< HEAD
   old <- partition$order_by
   partition$order_by <- vars
+=======
+  old <- sql_context$order_by
+  sql_context$order_by <- vars
+>>>>>>> hadley/master
   invisible(old)
 }
 
 #' @export
 #' @rdname win_over
+<<<<<<< HEAD
 win_current_group <- function() partition$group_by
 
 #' @export
@@ -181,6 +215,16 @@ win_current_order <- function() partition$order_by
 
 # Not exported, because you shouldn't need it
 win_current_con <- function() partition$con
+=======
+win_current_group <- function() sql_context$group_by
+
+#' @export
+#' @rdname win_over
+win_current_order <- function() sql_context$order_by
+
+# Not exported, because you shouldn't need it
+sql_current_con <- function() sql_context$con
+>>>>>>> hadley/master
 
 
 # Where translation -------------------------------------------------------
@@ -226,7 +270,11 @@ translate_window_where <- function(expr, window_funs = common_window_funs()) {
         window_where(as_symbol(name), set_names(list(expr), name))
       } else {
         args <- map(expr[-1], translate_window_where, window_funs = window_funs)
+<<<<<<< HEAD
         expr <- new_language(node_car(expr), .args = map(args, "[[", "expr"))
+=======
+        expr <- new_language(node_car(expr), splice(map(args, "[[", "expr")))
+>>>>>>> hadley/master
 
         window_where(
           expr = expr,

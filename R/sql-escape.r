@@ -98,14 +98,22 @@ escape <- function(x, parens = NA, collapse = " ", con = NULL) {
 #' @export
 escape.ident <- function(x, parens = FALSE, collapse = ", ", con = NULL) {
   y <- sql_escape_ident(con, x)
+<<<<<<< HEAD
   sql_vector(names_to_as(y, con), parens, collapse)
+=======
+  sql_vector(names_to_as(y, names2(x), con = con), parens, collapse)
+>>>>>>> hadley/master
 }
 
 #' @export
 escape.logical <- function(x, parens = NA, collapse = ", ", con = NULL) {
+<<<<<<< HEAD
   x <- as.character(as.integer(x))
   x[is.na(x)] <- "NULL"
   sql_vector(x, parens, collapse)
+=======
+  sql_vector(sql_escape_logical(con, x), parens, collapse, con = con)
+>>>>>>> hadley/master
 }
 
 #' @export
@@ -179,8 +187,12 @@ sql_vector <- function(x, parens = NA, collapse = " ", con = NULL) {
   sql(x)
 }
 
+<<<<<<< HEAD
 names_to_as <- function(x, con = NULL) {
   names <- names2(x)
+=======
+names_to_as <- function(x, names = names2(x), con = NULL) {
+>>>>>>> hadley/master
   as <- ifelse(names == "", "", paste0(" AS ", sql_escape_ident(con, names)))
 
   paste0(x, as)
@@ -212,7 +224,11 @@ names_to_as <- function(x, con = NULL) {
 #' # http://xkcd.com/327/
 #' name <- "Robert'); DROP TABLE Students;--"
 #' build_sql("INSERT INTO Students (Name) VALUES (", name, ")")
+<<<<<<< HEAD
 build_sql <- function(..., .env = parent.frame(), con = NULL) {
+=======
+build_sql <- function(..., .env = parent.frame(), con = sql_current_con()) {
+>>>>>>> hadley/master
   escape_expr <- function(x) {
     # If it's a string, leave it as is
     if (is.character(x)) return(x)

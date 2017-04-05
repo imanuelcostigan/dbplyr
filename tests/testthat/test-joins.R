@@ -61,6 +61,7 @@ test_that("suffix modifies duplicated variable names", {
 test_that("join functions error on column not found for SQL sources #1928", {
   expect_error(
     left_join(memdb_frame(x = 1:5), memdb_frame(y = 1:5), by = "x"),
+<<<<<<< HEAD
     "column not found in rhs"
   )
   expect_error(
@@ -72,3 +73,26 @@ test_that("join functions error on column not found for SQL sources #1928", {
     "No common variables"
   )
 })
+=======
+    "not found in rhs"
+  )
+  expect_error(
+    left_join(memdb_frame(x = 1:5), memdb_frame(y = 1:5), by = "y"),
+    "not found in lhs"
+  )
+  expect_error(
+    left_join(memdb_frame(x = 1:5), memdb_frame(y = 1:5)),
+    "[Nn]o common variables"
+  )
+})
+
+# All sources -------------------------------------------------------------
+
+test_that("sql generated correctly for all sources", {
+  x <- test_frame(a = letters[1:7], c = 2:8)
+  y <- test_frame(a = letters[1:4], b = c(1, 2, 3, NA))
+  xy <- map2(x, y, left_join)
+
+  expect_equal_tbls(xy)
+})
+>>>>>>> hadley/master

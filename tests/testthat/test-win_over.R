@@ -16,8 +16,13 @@ test_that("multiple group by or order values don't have parens", {
 })
 
 test_that("connection affects quoting window function fields", {
+<<<<<<< HEAD
   old <- set_win_current_con(simulate_test())
   on.exit(set_win_current_con(old))
+=======
+  old <- set_current_con(simulate_test())
+  on.exit(set_current_con(old))
+>>>>>>> hadley/master
 
   expect_equal(win_over(ident("x")), sql("`x` OVER ()"))
   expect_equal(
